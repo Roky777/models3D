@@ -1,0 +1,4 @@
+import {fileURLToPath as __toPath} from 'node:url'; import __path from 'node:path';  // handoff: paths relative to this script
+const ROOT = __path.resolve(__path.dirname(__toPath(import.meta.url)), '..').replace(/\\/g, '/');
+const EXT = __path.resolve(ROOT, '..', 'external').replace(/\\/g, '/');
+import fs from 'node:fs';import validator from 'gltf-validator';const path=ROOT+'/Outputs/sparky-vnext.glb';const report=await validator.validateBytes(new Uint8Array(fs.readFileSync(path)),{uri:'sparky-fireball-rounded.glb',maxIssues:100});fs.writeFileSync(ROOT+'/data/gltf-validation.json',JSON.stringify(report,null,2));console.log(JSON.stringify({bytes:fs.statSync(path).size,errors:report.issues.numErrors,warnings:report.issues.numWarnings,messages:report.issues.messages.slice(0,3)}));if(report.issues.numErrors)process.exitCode=1;

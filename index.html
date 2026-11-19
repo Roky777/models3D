@@ -46,6 +46,7 @@ h1 span{background:linear-gradient(180deg,var(--gold),var(--flame));-webkit-back
 .live{display:inline-block;margin:10px 4px 0;font-size:12.5px;color:var(--ember);text-decoration:none;border-bottom:1px solid rgba(255,154,60,.35)}
 .live:hover{border-color:var(--ember)}
 section.ref{margin-top:72px}
+section.emo{margin-top:64px}.emo h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:26px}.emo h2 span{color:var(--muted);font-size:18px}.emo>p{color:var(--muted);margin:6px 0 22px;max-width:760px}
 .ref h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:26px}
 .ref p{color:var(--muted);margin:6px 0 20px}
 .ref img{width:100%;border-radius:22px;display:block;background:#000;box-shadow:0 0 0 1px var(--line) inset}
@@ -77,6 +78,12 @@ dialog::backdrop{background:rgba(0,0,0,.94)}
 
   <main class="grid" id="grid"></main>
 
+  <section class="emo">
+    <h2>Emotions <span>· v-teardrop-hands</span></h2>
+    <p>Two mood animations with their own fire: the clip drives the face, hands and body, and the live fire follows it.</p>
+    <div class="grid" id="emo"></div>
+  </section>
+
 
   <footer>Live 3D viewers: versions/&lt;name&gt;/ · 3D models (.glb): models/</footer>
 </div>
@@ -94,23 +101,30 @@ const versions=[
   {id:'v-ultimate',name:'v-ultimate',date:'18 Nov',port:8954,desc:'Approved fireball rebuild — tall single curl, original crown.'},
   {id:'v-paltimate',name:'v-paltimate',date:'18 Nov',port:8956,desc:'Sculpted flame crown, nose and full face rig.'},
   {id:'v-paltimate2',name:'v-paltimate2',date:'19 Nov',port:8958,desc:'Flame-ribbon crown, cute eased fire motion, burning tips, fire light.'},
-  {id:'v-teardrop',name:'v-teardrop',date:'19 Nov',port:8959,desc:'New teardrop shape from the turnaround sheet, igniting side flames.',isNew:true},
+  {id:'v-teardrop',name:'v-teardrop',date:'19 Nov',port:8959,desc:'Teardrop shape from the turnaround sheet, curling main flame, side flames, finished face.'},
+  {id:'v-teardrop-hands',name:'v-teardrop-hands',date:'19 Nov',port:8960,desc:'v-teardrop with cartoon caramel hands and emotion clips: happy, excited, angry, shy, sad, surprised, wave.',isNew:true},
+];
+const emotions=[
+  {id:'Emotion_Angry',name:'Angry',date:'power-up',live:'v-teardrop-hands',desc:'Brows down, narrowed eyes, clenched fists, trembling: the fire burns high, fast and golden with a rising aura.',isNew:true},
+  {id:'Emotion_Sad',name:'Sad',date:'blue flame',live:'v-teardrop-hands',desc:'The flame dims to blue and slows, he shrinks and droops, brows up, sad eyes and a little frown.',isNew:true},
 ];
 const grid=document.getElementById('grid');
-for(const v of versions){
+function addCard(grid,v){const live=v.live||v.id;
   const c=document.createElement('article');c.className='card'+(v.isNew?' new':'');c.tabIndex=0;
   c.innerHTML=`<div class="stage">${v.isNew?'<span class="badge">New</span>':''}
       <video src="media/${v.id}.mp4" poster="media/${v.id}.jpg" muted loop playsinline autoplay preload="auto"></video>
       <img src="media/${v.id}.jpg" alt="${v.name} front view" hidden></div>
     <div class="meta"><span class="name">${v.name}</span><span class="date">${v.date}</span></div>
     <p class="desc">${v.desc}</p>
-    <a class="live" href="versions/${v.id}/" target="_blank" rel="noopener">Open live 3D ↗</a>`;
+    <a class="live" href="versions/${live}/" target="_blank" rel="noopener">Open live 3D ↗</a>`;
   c.querySelector('.live').addEventListener('click',e=>e.stopPropagation());
   const open=()=>{const d=document.getElementById('lb');const lv=document.getElementById('lbv');lv.src=`media/${v.id}.mp4`;lv.play().catch(()=>{});
-    document.getElementById('lbn').textContent=v.name;document.getElementById('lbd').textContent=v.desc;document.getElementById('lbl').href=`versions/${v.id}/`;d.showModal();};
+    document.getElementById('lbn').textContent=v.name;document.getElementById('lbd').textContent=v.desc;document.getElementById('lbl').href=`versions/${live}/`;d.showModal();};
   c.addEventListener('click',open);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
   grid.append(c);
 }
+for(const v of versions)addCard(grid,v);
+for(const v of emotions)addCard(document.getElementById('emo'),v);
 const lb=document.getElementById('lb');
 lb.querySelector('.close').onclick=()=>lb.close();
 lb.addEventListener('click',e=>{if(e.target.classList.contains('lb'))lb.close();});
@@ -121,7 +135,7 @@ for(const b of document.querySelectorAll('.toggle button'))b.onclick=()=>{
   for(const card of document.querySelectorAll('.card')){const vid=card.querySelector('video'),img=card.querySelector('img');
     vid.hidden=still;img.hidden=!still;if(still)vid.pause();else{vid.currentTime=0;vid.play().catch(()=>{});}}
 };
-// keep all four turntables in step
+// keep all the turntables / emotion clips in step
 const vids=[...document.querySelectorAll('.stage video')];
 Promise.all(vids.map(v=>new Promise(r=>v.readyState>=3?r():v.addEventListener('canplay',r,{once:true})))).then(()=>{for(const v of vids){v.currentTime=0;v.play().catch(()=>{});}});
 </script>

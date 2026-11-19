@@ -1,0 +1,18 @@
+{
+  "view": "front",
+  "params": {
+    "num_inference_steps": 50,
+    "octree_resolution": 380,
+    "guidance_scale": 7.0,
+    "seed": 7
+  },
+  "status": {
+    "job_id": "38e32918-3797-4c40-8430-7ce10464369d",
+    "status": "done",
+    "progress": 100,
+    "step": "Done",
+    "output_url": "/workspace/SparkyTeardrop/1795074613_a553ec6a.glb",
+    "error": null
+  },
+  "seconds": 76
+}

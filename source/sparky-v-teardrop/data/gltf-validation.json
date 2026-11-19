@@ -1,0 +1,116 @@
+{
+  "uri": "sparky-fireball-rounded.glb",
+  "mimeType": "model/gltf-binary",
+  "validatorVersion": "2.0.0-dev.3.10",
+  "validatedAt": "2026-11-19T16:19:08.995Z",
+  "issues": {
+    "numErrors": 0,
+    "numWarnings": 3,
+    "numInfos": 5,
+    "numHints": 0,
+    "messages": [
+      {
+        "code": "UNSUPPORTED_EXTENSION",
+        "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+        "severity": 2,
+        "pointer": "/extensionsUsed/0"
+      },
+      {
+        "code": "NODE_SKINNED_MESH_NON_ROOT",
+        "message": "Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+        "severity": 1,
+        "pointer": "/nodes/0"
+      },
+      {
+        "code": "NODE_EMPTY",
+        "message": "Empty node encountered.",
+        "severity": 2,
+        "pointer": "/nodes/34"
+      },
+      {
+        "code": "NODE_SKINNED_MESH_NON_ROOT",
+        "message": "Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+        "severity": 1,
+        "pointer": "/nodes/35"
+      },
+      {
+        "code": "NODE_SKINNED_MESH_NON_ROOT",
+        "message": "Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+        "severity": 1,
+        "pointer": "/nodes/36"
+      },
+      {
+        "code": "UNUSED_MESH_WEIGHTS",
+        "message": "The static morph target weights are always overridden.",
+        "severity": 2,
+        "pointer": "/meshes/7/weights"
+      },
+      {
+        "code": "UNUSED_MESH_WEIGHTS",
+        "message": "The static morph target weights are always overridden.",
+        "severity": 2,
+        "pointer": "/meshes/8/weights"
+      },
+      {
+        "code": "UNUSED_MESH_WEIGHTS",
+        "message": "The static morph target weights are always overridden.",
+        "severity": 2,
+        "pointer": "/meshes/9/weights"
+      }
+    ],
+    "truncated": false
+  },
+  "info": {
+    "version": "2.0",
+    "generator": "glTF-Transform v4.5.1",
+    "extensionsUsed": [
+      "EXT_meshopt_compression",
+      "EXT_texture_webp",
+      "KHR_materials_clearcoat",
+      "KHR_materials_unlit",
+      "KHR_mesh_quantization"
+    ],
+    "extensionsRequired": [
+      "EXT_meshopt_compression",
+      "EXT_texture_webp",
+      "KHR_mesh_quantization"
+    ],
+    "resources": [
+      {
+        "pointer": "/buffers/0",
+        "mimeType": "application/gltf-buffer",
+        "storage": "glb",
+        "byteLength": 1968024
+      },
+      {
+        "pointer": "/buffers/1",
+        "mimeType": "application/gltf-buffer"
+      },
+      {
+        "pointer": "/images/0",
+        "mimeType": "image/webp",
+        "storage": "buffer-view",
+        "image": {
+          "width": 2048,
+          "height": 2048,
+          "format": "rgb",
+          "primaries": "srgb",
+          "transfer": "srgb",
+          "bits": 8
+        }
+      }
+    ],
+    "animationCount": 22,
+    "materialCount": 7,
+    "hasMorphTargets": true,
+    "hasSkins": true,
+    "hasTextures": true,
+    "hasDefaultScene": true,
+    "drawCallCount": 12,
+    "totalVertexCount": 65149,
+    "totalTriangleCount": 123760,
+    "maxUVs": 1,
+    "maxInfluences": 4,
+    "maxAttributes": 5
+  }
+}
